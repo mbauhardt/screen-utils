@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ $(xssstate -s) = "on" ];
+then
+	_idle=$(($(xssstate -i) / 1000))
+	if [ $_idle -gt 600 ];
+	then
+		sudo zzz
+	fi
+fi
+
