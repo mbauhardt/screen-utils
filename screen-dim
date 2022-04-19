@@ -1,0 +1,16 @@
+#!/bin/bash
+
+get_brightness() {
+  xrandr --verbose | awk '/Brightness/ { print $NF }'
+}
+
+set_brightness() {
+  xrandr --listactivemonitors| tail -n1 | awk '{ print $NF }' | xargs -i xrandr --output {} --brightness $1
+}
+
+
+trap 'exit 0' TERM INT
+trap "set_brightness $(get_brightness); kill %%" EXIT
+set_brightness 0.5
+sleep 2147483647 &
+wait

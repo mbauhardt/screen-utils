@@ -1,0 +1,5 @@
+#!/bin/sh
+
+h=$(hostname)
+slock -m "login $USER@$h"
+
