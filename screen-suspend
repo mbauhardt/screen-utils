@@ -1,5 +1,15 @@
 #!/bin/sh
 
+while getopts hf opt
+do
+    case "$opt" in
+      f) sudo zzz
+         exit 0;;
+      h) echo "usage: [-hf]"
+         exit 0;;
+    esac
+done
+
 if [ $(xssstate -s) = "on" ];
 then
 	_idle=$(($(xssstate -i) / 1000))
